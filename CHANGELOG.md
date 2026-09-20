@@ -4,4 +4,5 @@ All notable project changes will be documented here.
 
 ## Unreleased
 
-- Established the VMDR-first repository foundation and collection standard.
+- Established the Qualys API (VM/PC)-first repository foundation and collection standard.
+- Added the initial Qualys API (VM/PC) source register and family-level coverage register.

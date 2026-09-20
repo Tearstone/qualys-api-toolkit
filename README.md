@@ -4,7 +4,7 @@ Community-maintained Postman collections for Qualys product APIs. Each collectio
 
 ## Current focus
 
-The first collection will cover **Vulnerability Management, Detection and Response (VMDR)**. It will catalog the documented VMDR endpoints, supported API versions, and input parameters in a clear Postman structure.
+The first collection will cover **Qualys API (VM/PC)**. It will catalog the documented VMDR, Policy Audit, and shared-platform API endpoints, supported versions, and input parameters in a clear Postman structure.
 
 This repository is intentionally focused on API reference collections. It does not currently include operational workflows, tenant automation, or tag-management scripts.
 
@@ -16,7 +16,7 @@ The repository foundation is in place. The VMDR collection is being cataloged an
 
 ```text
 collections/
-  vmdr/                 VMDR collection and its coverage notes
+  qualys-api-vm-pc/     VMDR, Policy Audit, and shared-platform APIs
 environments/
   qualys.template...    Credential-free Postman environment template
 docs/
@@ -27,7 +27,7 @@ Each product collection will identify its source documentation, covered endpoint
 
 ## Getting started
 
-When the VMDR collection is released:
+When the Qualys API (VM/PC) collection is released:
 
 1. Import the collection and the credential-free environment template into Postman.
 2. Set your Qualys API server URL for your platform.

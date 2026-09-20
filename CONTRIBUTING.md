@@ -4,7 +4,7 @@ Thank you for helping improve the Qualys API Toolkit.
 
 ## Scope
 
-The current objective is complete, product-specific Postman collections. Start with VMDR. Do not add tenant automation, opinionated workflows, or tag-management tooling unless the project scope is updated.
+The current objective is complete, product-specific or guide-specific Postman collections. Start with Qualys API (VM/PC), which includes VMDR, Policy Audit, and shared-platform APIs. Do not add tenant automation, opinionated workflows, or tag-management tooling unless the project scope is updated.
 
 ## Source requirements
 
