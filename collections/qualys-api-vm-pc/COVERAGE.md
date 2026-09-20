@@ -18,7 +18,7 @@ This register is the implementation inventory for the first Postman collection. 
 
 | Area | Included guide sections | PDF pages | Status |
 | --- | --- | ---: | --- |
-| Shared platform | API conventions, API lifecycle, authentication, session APIs, IdP token authentication | 11-35 | Planned |
+| Shared platform | API conventions, API lifecycle, authentication, session APIs, IdP token authentication | 11-35 | Cataloging - authentication requests built; import and live verification pending |
 | Scans | VM, compliance, SCAP, cloud perimeter/internal scans, schedules, parameters, summaries, scanner details, discovery scans | 37-197 | Planned |
 | Scan configuration | Scanner appliances, VLANs/routes, imports/exports, VM/PCI/compliance option profiles, containerized scanner appliances | 198-604 | Planned |
 | KnowledgeBase and search lists | KnowledgeBase versions, QVS JSON, vulnerability editing, static/dynamic search lists, vendor IDs/references | 477-593 | Planned |

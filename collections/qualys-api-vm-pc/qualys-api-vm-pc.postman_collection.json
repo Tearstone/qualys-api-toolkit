@@ -1,0 +1,206 @@
+{
+  "info": {
+    "_postman_id": "f8df5c1a-1db4-4c1e-9592-2c685ca00d52",
+    "name": "Qualys API (VM/PC)",
+    "description": "Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication only. Additional VMDR and Policy Audit families are cataloged in the coverage register and will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection's authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{username}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{password}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Shared platform",
+      "description": "Requests shared across the Qualys API (VM/PC) collection.",
+      "item": [
+        {
+          "name": "Authentication",
+          "description": "Source: Qualys API (VM and PA) User Guide v10.40, pages 25-35. Lifecycle reviewed against the official EOS/EOL timeline on 2026-09-20; no lifecycle date is published for these session endpoints.",
+          "item": [
+            {
+              "name": "Session login",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Requested-With",
+                    "value": "{{xRequestedWith}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "action",
+                      "value": "login",
+                      "description": "Required. Makes a session login request.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "description": "Required. Qualys user login.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "description": "Required. Qualys user password. Postman URL-encodes form values.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "echo_request",
+                      "value": "1",
+                      "description": "Optional. Set to 1 to echo request parameter names and values in the XML response.",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/2.0/fo/session/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "2.0",
+                    "fo",
+                    "session",
+                    ""
+                  ]
+                },
+                "description": "Creates a Qualys API V2 session. A successful response sets a QualysSession cookie. Postman should retain that cookie for requests to the same API server during the active session.\n\nLifecycle: No published EOS/EOL date as of 2026-09-20."
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Session login returned HTTP 200', function () {",
+                      "  pm.response.to.have.status(200);",
+                      "});",
+                      "pm.test('Session login response indicates success', function () {",
+                      "  pm.expect(pm.response.text()).to.include('Logged in');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "response": []
+            },
+            {
+              "name": "Session logout",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Requested-With",
+                    "value": "{{xRequestedWith}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "action",
+                      "value": "logout",
+                      "description": "Required. Makes a session logout request.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "echo_request",
+                      "value": "1",
+                      "description": "Optional. Set to 1 to echo request parameter names and values in the XML response.",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/2.0/fo/session/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "2.0",
+                    "fo",
+                    "session",
+                    ""
+                  ]
+                },
+                "description": "Closes the active Qualys API V2 session. Send this after completing session-authenticated requests in the same Postman session.\n\nLifecycle: No published EOS/EOL date as of 2026-09-20."
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Session logout returned HTTP 200', function () {",
+                      "  pm.response.to.have.status(200);",
+                      "});",
+                      "pm.test('Session logout response indicates success', function () {",
+                      "  pm.expect(pm.response.text()).to.include('Logged out');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://YOUR-QUALYS-API-SERVER",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "xRequestedWith",
+      "value": "Qualys API Toolkit",
+      "type": "string"
+    }
+  ]
+}
