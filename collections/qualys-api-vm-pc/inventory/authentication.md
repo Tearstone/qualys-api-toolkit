@@ -1,7 +1,5 @@
 # Shared authentication endpoint register
 
-Source baseline: *Qualys API (VM and PA) User Guide*, version 10.40, pages 25-35. Current maintenance source: [Authentication to Qualys Account](https://docs.qualys.com/en/vm/qweb-all-api/get_started/authentication.htm). Lifecycle source reviewed 2026-09-20: [API Life Cycle - EOS/EOL](https://docs.qualys.com/en/vm/qweb-all-api/get_started/api_versioning_standards.htm).
-
 ## Authentication approaches
 
 | Approach | Collection treatment | Guide pages | Lifecycle status |
@@ -29,3 +27,5 @@ The guide shows a provider-specific token-generation request; its URL varies by 
 2. Confirm that the login response sets a cookie in Postman's cookie manager.
 3. Confirm logout succeeds with that cookie in the same Postman session.
 4. Confirm Basic and IdP JWT authentication against an authorized subscription without committing any tenant data.
+
+Source baseline: *Qualys API (VM and PA) User Guide*, version 10.40, pages 25-35. Current maintenance source: [Authentication to Qualys Account](https://docs.qualys.com/en/vm/qweb-all-api/get_started/authentication.htm). Lifecycle source reviewed 2026-09-20: [API Life Cycle - EOS/EOL](https://docs.qualys.com/en/vm/qweb-all-api/get_started/api_versioning_standards.htm).
