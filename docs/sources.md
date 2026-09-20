@@ -16,6 +16,8 @@ The publisher URL may serve a newer PDF later. The edition, date, and checksum i
 
 Use the official [Qualys VM and PA APIs HTML guide](https://docs.qualys.com/en/vm/qweb-all-api/) to identify published changes after the baseline edition. Record the HTML page URL and the review date against each affected request.
 
+Use the official [API Life Cycle - EOS/EOL](https://docs.qualys.com/en/vm/qweb-all-api/get_started/api_versioning_standards.htm) page for endpoint-specific lifecycle dates and recommended replacement paths. It is reviewed independently because lifecycle dates can change between PDF editions.
+
 ### Excluded source
 
 Do not use `developers.qualys.com` as an API-discovery or maintenance source for this project. It is under review and known to be incomplete.

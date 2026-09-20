@@ -47,9 +47,9 @@ Destructive or tenant-changing requests will be included only after their read-o
 
 ## Next detail level
 
-For each family, add an endpoint table with these fields:
+For each family, add an endpoint-version table with these fields:
 
-| Operation | Method | Path | Version(s) | Parameters complete | PDF pages | HTML link | Status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Operation | Method | Path | Version | Lifecycle status | EOS | EOL | Replacement path | Parameters complete | PDF pages | HTML link | Lifecycle source | Status | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
-No row may claim parameter completeness until every documented input parameter has been reviewed.
+No row may claim parameter completeness until every documented input parameter has been reviewed. No row may claim a lifecycle status until it has been checked against the official [EOS/EOL timeline](../../docs/api-lifecycle.md).

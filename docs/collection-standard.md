@@ -22,7 +22,16 @@ Use request names that begin with an action, such as `List host assets` or `Get 
 
 ## Versions
 
-Keep supported versions visible. Do not silently replace an older documented version with a newer one. Mark versions as active, deprecated, or end-of-life only when the source documentation provides that status.
+Keep every documented version visible. Do not silently replace an older documented version with a newer one.
+
+For every versioned endpoint, record its lifecycle status, EOS date, EOL date, recommended replacement path, source URL, and source review date. Use the published timeline for the exact endpoint instead of calculating dates from the general policy. See [API lifecycle metadata](api-lifecycle.md).
+
+When a version is EOS or EOL, retain it in the collection but make the status impossible to miss:
+
+- Prefix the request name with `EOS -` or `EOL -`.
+- Include EOS, EOL, and replacement-path details at the top of the request description.
+- Keep EOL requests disabled by default. EOS requests may remain usable, but must display the warning before a customer sends them.
+- Do not label an endpoint as active merely because it does not appear in the published timeline. Use `No published lifecycle date` until its status is confirmed.
 
 ## Parameters
 
@@ -39,6 +48,7 @@ Each collection or coverage note must distinguish:
 - **Documented** — checked against the cited Qualys documentation.
 - **Imported** — successfully imported into Postman.
 - **Live verified** — exercised against an authorized subscription without recording tenant data.
+- **Lifecycle reviewed** — EOS/EOL status and dates checked against the published Qualys timeline.
 
 ## Documentation
 
