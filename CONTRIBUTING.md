@@ -29,7 +29,7 @@ Place requests that can create, modify, or delete tenant data in a clearly label
 
 ## Catalog-first maintenance
 
-Add or update operation metadata in `catalog/` before editing the Postman collection. A catalog record captures the endpoint version, parameters, lifecycle details, source pages, and maintenance status in a form that can later generate and validate the customer-facing collection. Do not add new `inventory/` Markdown files for individual API families.
+Add or update operation metadata in `catalog/` before building the Postman collection. A catalog record captures the endpoint version, parameters, lifecycle details, source pages, and maintenance status. Run `node scripts/build-vm-pc-collection.mjs` after catalog changes, then commit the catalog and generated collection together. Do not add new `inventory/` Markdown files for individual API families or directly edit generated collection JSON.
 
 ## Before opening a pull request
 
