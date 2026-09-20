@@ -174,6 +174,104 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Assets",
+      "description": "Source: Qualys API (VM and PA) User Guide v10.40, pages 983-1118. Lifecycle reviewed 2026-09-20.",
+      "item": [
+        {
+          "name": "IP addresses",
+          "item": [
+            {
+              "name": "List IP addresses (GET)",
+              "request": {
+                "method": "GET",
+                "header": [{"key": "X-Requested-With", "value": "{{xRequestedWith}}", "type": "text"}],
+                "url": {"raw": "{{baseUrl}}/api/2.0/fo/asset/ip/?action=list", "host": ["{{baseUrl}}"], "path": ["api", "2.0", "fo", "asset", "ip", ""], "query": [
+                  {"key": "action", "value": "list", "description": "Required. Lists IP addresses.", "type": "text"},
+                  {"key": "echo_request", "value": "1", "description": "Optional. Echoes request parameters.", "type": "text", "disabled": true},
+                  {"key": "ips", "value": "", "description": "Optional. Comma-separated IPs or ranges.", "type": "text", "disabled": true},
+                  {"key": "network_id", "value": "", "description": "Optional. Custom network ID when Network Support is enabled.", "type": "text", "disabled": true},
+                  {"key": "tracking_method", "value": "", "description": "Optional. IP, DNS, or NETBIOS.", "type": "text", "disabled": true},
+                  {"key": "compliance_enabled", "value": "", "description": "Optional. 0 or 1; requires Policy Compliance access.", "type": "text", "disabled": true},
+                  {"key": "certview_enabled", "value": "", "description": "Optional. 0 or 1; requires Certificate View availability.", "type": "text", "disabled": true}
+                ]},
+                "description": "Lists IP addresses. Lifecycle: No published EOS/EOL date as of 2026-09-20."
+              },
+              "response": []
+            },
+            {
+              "name": "List IP addresses (POST)",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "X-Requested-With", "value": "{{xRequestedWith}}", "type": "text"}],
+                "body": {"mode": "urlencoded", "urlencoded": [
+                  {"key": "action", "value": "list", "description": "Required. Lists IP addresses.", "type": "text"},
+                  {"key": "echo_request", "value": "1", "description": "Optional. Echoes request parameters.", "type": "text", "disabled": true},
+                  {"key": "ips", "value": "", "description": "Optional. Comma-separated IPs or ranges.", "type": "text", "disabled": true},
+                  {"key": "network_id", "value": "", "description": "Optional. Custom network ID.", "type": "text", "disabled": true},
+                  {"key": "tracking_method", "value": "", "description": "Optional. IP, DNS, or NETBIOS.", "type": "text", "disabled": true},
+                  {"key": "compliance_enabled", "value": "", "description": "Optional. 0 or 1.", "type": "text", "disabled": true},
+                  {"key": "certview_enabled", "value": "", "description": "Optional. 0 or 1.", "type": "text", "disabled": true}
+                ]},
+                "url": "{{baseUrl}}/api/2.0/fo/asset/ip/",
+                "description": "POST form equivalent of IP list. Lifecycle: No published EOS/EOL date as of 2026-09-20."
+              },
+              "response": []
+            },
+            {
+              "name": "[CHANGE] Add IP addresses",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "X-Requested-With", "value": "{{xRequestedWith}}", "type": "text"}],
+                "body": {"mode": "urlencoded", "urlencoded": [
+                  {"key": "action", "value": "add", "description": "Required by Qualys. Disabled as a safety gate; enable only after setting allowTenantChanges=true.", "type": "text", "disabled": true},
+                  {"key": "enable_vm", "value": "1", "description": "Required. 0 or 1; requires VM module.", "type": "text"},
+                  {"key": "enable_pc", "value": "0", "description": "Required. 0 or 1; requires PC module.", "type": "text"},
+                  {"key": "enable_sca", "value": "0", "description": "Required. 0 or 1; requires SCA module.", "type": "text"},
+                  {"key": "ips", "value": "192.0.2.10", "description": "Required unless POSTing CSV raw data. IPs, ranges, or CIDR notation.", "type": "text"},
+                  {"key": "echo_request", "value": "1", "description": "Optional. Echoes request parameters.", "type": "text", "disabled": true},
+                  {"key": "tracking_method", "value": "", "description": "Optional. IP, DNS, or NETBIOS.", "type": "text", "disabled": true},
+                  {"key": "owner", "value": "", "description": "Optional. Manager or permitted Unit Manager.", "type": "text", "disabled": true},
+                  {"key": "ud1", "value": "", "description": "Optional user-defined field 1.", "type": "text", "disabled": true},
+                  {"key": "ud2", "value": "", "description": "Optional user-defined field 2.", "type": "text", "disabled": true},
+                  {"key": "ud3", "value": "", "description": "Optional user-defined field 3.", "type": "text", "disabled": true},
+                  {"key": "comment", "value": "", "description": "Optional user-defined comment.", "type": "text", "disabled": true},
+                  {"key": "ag_title", "value": "", "description": "Required for Unit Manager; otherwise invalid.", "type": "text", "disabled": true},
+                  {"key": "enable_certview", "value": "", "description": "Optional. 0 or 1 when Certificate View is available.", "type": "text", "disabled": true}
+                ]},
+                "url": "{{baseUrl}}/api/2.0/fo/asset/ip/",
+                "description": "WARNING: Changes the subscription. Set allowTenantChanges=true and enable action=add only after reviewing all values. Lifecycle: No published EOS/EOL date as of 2026-09-20. CSV raw-data upload is documented as an alternative to ips and will be added as a separate request variant."
+              },
+              "response": []
+            },
+            {
+              "name": "[CHANGE] Update IP addresses",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "X-Requested-With", "value": "{{xRequestedWith}}", "type": "text"}],
+                "body": {"mode": "urlencoded", "urlencoded": [
+                  {"key": "action", "value": "update", "description": "Required by Qualys. Disabled as a safety gate; enable only after setting allowTenantChanges=true.", "type": "text", "disabled": true},
+                  {"key": "ips", "value": "192.0.2.10", "description": "Required unless POSTing CSV raw data. IPs, ranges, or CIDR notation.", "type": "text"},
+                  {"key": "echo_request", "value": "1", "description": "Optional. Echoes request parameters.", "type": "text", "disabled": true},
+                  {"key": "network_id", "value": "", "description": "Optional custom network ID.", "type": "text", "disabled": true},
+                  {"key": "tracking_method", "value": "", "description": "Optional. IP, DNS, or NETBIOS; cannot change EC2 or AGENT tracking.", "type": "text", "disabled": true},
+                  {"key": "host_dns", "value": "", "description": "Optional. Requires a single IP and matching DNS hostname.", "type": "text", "disabled": true},
+                  {"key": "host_netbios", "value": "", "description": "Optional. Requires a single IP and matching NetBIOS hostname.", "type": "text", "disabled": true},
+                  {"key": "owner", "value": "", "description": "Optional owner.", "type": "text", "disabled": true},
+                  {"key": "ud1", "value": "", "description": "Optional user-defined field 1.", "type": "text", "disabled": true},
+                  {"key": "ud2", "value": "", "description": "Optional user-defined field 2.", "type": "text", "disabled": true},
+                  {"key": "ud3", "value": "", "description": "Optional user-defined field 3.", "type": "text", "disabled": true},
+                  {"key": "comment", "value": "", "description": "Optional user-defined comment.", "type": "text", "disabled": true}
+                ]},
+                "url": "{{baseUrl}}/api/2.0/fo/asset/ip/",
+                "description": "WARNING: Changes the subscription. Set allowTenantChanges=true and enable action=update only after reviewing all values. Lifecycle: No published EOS/EOL date as of 2026-09-20. CSV raw-data upload is documented as an alternative to ips and will be added as a separate request variant."
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "variable": [
@@ -200,6 +298,11 @@
     {
       "key": "xRequestedWith",
       "value": "Qualys API Toolkit",
+      "type": "string"
+    },
+    {
+      "key": "allowTenantChanges",
+      "value": "false",
       "type": "string"
     }
   ]
