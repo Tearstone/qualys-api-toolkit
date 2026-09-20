@@ -5,10 +5,10 @@ import { fileURLToPath } from 'node:url';
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const catalogDirectory = resolve(repositoryRoot, 'catalog/vm-pc');
 const outputPath = resolve(repositoryRoot, 'collections/qualys-api-vm-pc/qualys-api-vm-pc.postman_collection.json');
-const catalogPaths = ['authentication.json', 'assets-ip.json'];
+const catalogPaths = ['authentication.json', 'assets-ip.json', 'assets-host-list.json'];
 
 const source = await Promise.all(catalogPaths.map(async (file) => JSON.parse(await readFile(resolve(catalogDirectory, file), 'utf8'))));
-const [authentication, ipAssets] = source;
+const [authentication, ipAssets, hostAssets] = source;
 
 function fail(message) {
   throw new Error(`Catalog validation failed: ${message}`);
@@ -120,7 +120,7 @@ const collection = {
   info: {
     _postman_id: 'f8df5c1a-1db4-4c1e-9592-2c685ca00d52',
     name: 'Qualys API (VM/PC)',
-    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication and IP asset operations. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
+    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, and Host List V6. Earlier Host List versions are retained in the catalog with published EOS/EOL dates and will be added only after their parameter differences are fully reviewed. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
     schema: 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
   },
   auth: { type: 'basic', basic: [{ key: 'username', value: '{{username}}', type: 'string' }, { key: 'password', value: '{{password}}', type: 'string' }] },
@@ -140,6 +140,10 @@ const collection = {
       item: [{
         name: 'IP addresses',
         item: ipAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method)))
+      }, {
+        name: 'Hosts',
+        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. The active V6 request is built; V2-V5 remain recorded in the catalog with their published EOS/EOL dates.`,
+        item: hostAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method)))
       }]
     }
   ],

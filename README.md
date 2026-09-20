@@ -10,7 +10,7 @@ This repository is intentionally focused on API reference collections. It does n
 
 ## Status
 
-The VM/PC collection is available as an early, partial reference. It currently includes shared authentication and IP asset operations; it is not yet a complete API reference. The coverage register shows what is currently represented and what remains.
+The VM/PC collection is available as an early, partial reference. It currently includes shared authentication, IP asset operations, and Host List V6; it is not yet a complete API reference. The coverage register shows what is currently represented and what remains.
 
 ## Planned layout
 

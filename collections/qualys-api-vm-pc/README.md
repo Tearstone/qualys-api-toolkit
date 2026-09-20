@@ -2,7 +2,7 @@
 
 ## Status
 
-Early partial reference. It currently includes shared authentication and IP asset operations. It is not yet a complete Qualys API (VM/PC) reference.
+Early partial reference. It currently includes shared authentication, IP asset operations, and Host List V6. It is not yet a complete Qualys API (VM/PC) reference.
 
 ## Intended coverage
 

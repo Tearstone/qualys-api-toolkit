@@ -23,7 +23,7 @@ This register is the implementation inventory for the first Postman collection. 
 | Scan configuration | Scanner appliances, VLANs/routes, imports/exports, VM/PCI/compliance option profiles, containerized scanner appliances | 198-604 | Planned |
 | KnowledgeBase and search lists | KnowledgeBase versions, QVS JSON, vulnerability editing, static/dynamic search lists, vendor IDs/references | 477-593 | Planned |
 | Scan authentication and vaults | Authentication-record types and vault management | 605-982 | Planned |
-| Assets | IPs, hosts, detections, excluded/virtual/restricted hosts, asset groups, purge, patches, IPv6 assets | 983-1356 | Cataloging - IP form operations built; CSV variants and Host operations next |
+| Assets | IPs, hosts, detections, excluded/virtual/restricted hosts, asset groups, purge, patches, IPv6 assets | 983-1356 | Cataloging - IP form operations and Host List V6 read-only requests built; V2-V5 Host List parameter differences, CSV variants, and remaining host operations pending |
 | Networks | Networks and scanner assignment | 1357-1362 | Planned |
 | Reports and templates | Reports, report templates, scheduled reports, scorecards, downloads, VM/PCI/patch/map templates | 1363-1558 | Planned |
 | VM remediation | Remediation tickets and ignore-vulnerability operations | 1559-1577 | Planned |
