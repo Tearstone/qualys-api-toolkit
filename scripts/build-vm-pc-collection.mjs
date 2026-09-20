@@ -19,7 +19,7 @@ function validateCatalog(catalog) {
   if (!catalog.source?.reviewed || !catalog.source?.lifecycle) fail(`${catalog.guide}: source evidence is incomplete`);
   for (const operation of catalog.operations ?? []) {
     if (!operation.id || !operation.name || !operation.path || !operation.version) fail('operation identity is incomplete');
-    if (!Array.isArray(operation.parameters) || operation.parameters.length === 0) fail(`${operation.id}: parameters are missing`);
+    if ((!Array.isArray(operation.parameters) || operation.parameters.length === 0) && !operation.parametersFrom) fail(`${operation.id}: parameters are missing`);
     if (!operation.lifecycle?.status) fail(`${operation.id}: lifecycle status is missing`);
   }
 }
@@ -42,8 +42,17 @@ function parameterDescription(parameter, operation) {
   return `${requirement}${choices}${alternative}${safety}`;
 }
 
-function formParameters(operation) {
-  return operation.parameters.map((parameter) => ({
+function resolvedParameters(operation, operations) {
+  if (!operation.parametersFrom) return operation.parameters;
+  const sourceOperation = operations.find((candidate) => candidate.id === operation.parametersFrom);
+  if (!sourceOperation?.parameters) fail(`${operation.id}: parameter source ${operation.parametersFrom} does not exist`);
+  return sourceOperation.parameters
+    .filter((parameter) => !operation.parameterExclusions?.includes(parameter.name))
+    .map((parameter) => ({ ...parameter, ...(operation.parameterOverrides?.[parameter.name] ?? {}) }));
+}
+
+function formParameters(operation, operations) {
+  return resolvedParameters(operation, operations).map((parameter) => ({
     key: parameter.name,
     value: parameter.value,
     description: parameterDescription(parameter, operation),
@@ -83,9 +92,9 @@ function changeGate(operation) {
   }];
 }
 
-function request(operation, method, { auth = false, sessionTest } = {}) {
-  const query = method === 'GET' ? formParameters(operation) : undefined;
-  const body = method === 'POST' ? { mode: 'urlencoded', urlencoded: formParameters(operation) } : undefined;
+function request(operation, method, operations, { auth = false, sessionTest } = {}) {
+  const query = method === 'GET' ? formParameters(operation, operations) : undefined;
+  const body = method === 'POST' ? { mode: 'urlencoded', urlencoded: formParameters(operation, operations) } : undefined;
   const event = [
     ...(sessionTest ? [{ listen: 'test', script: { type: 'text/javascript', exec: sessionTest } }] : []),
     ...changeGate(operation)
@@ -120,7 +129,7 @@ const collection = {
   info: {
     _postman_id: 'f8df5c1a-1db4-4c1e-9592-2c685ca00d52',
     name: 'Qualys API (VM/PC)',
-    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, and Host List V6. Earlier Host List versions are retained in the catalog with published EOS/EOL dates and will be added only after their parameter differences are fully reviewed. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
+    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, and Host List V2-V6. Legacy Host List versions display their published EOS/EOL dates and V6 replacement path. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
     schema: 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
   },
   auth: { type: 'basic', basic: [{ key: 'username', value: '{{username}}', type: 'string' }, { key: 'password', value: '{{password}}', type: 'string' }] },
@@ -131,7 +140,7 @@ const collection = {
       item: [{
         name: 'Authentication',
         description: `Source: ${authentication.guide} v${authentication.guideVersion}, pages ${authentication.source.pdfPages}. Lifecycle reviewed against the official EOS/EOL timeline on ${authentication.source.reviewed}.`,
-        item: authentication.operations.map((operation) => request(operation, operation.method, { auth: true, sessionTest: sessionTests[operation.id] }))
+        item: authentication.operations.map((operation) => request(operation, operation.method, authentication.operations, { auth: true, sessionTest: sessionTests[operation.id] }))
       }]
     },
     {
@@ -139,11 +148,11 @@ const collection = {
       description: `Source: ${ipAssets.guide} v${ipAssets.guideVersion}, pages ${ipAssets.source.pdfPages}. Lifecycle reviewed ${ipAssets.source.reviewed}.`,
       item: [{
         name: 'IP addresses',
-        item: ipAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method)))
+        item: ipAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, ipAssets.operations)))
       }, {
         name: 'Hosts',
-        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. The active V6 request is built; V2-V5 remain recorded in the catalog with their published EOS/EOL dates.`,
-        item: hostAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method)))
+        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. V2-V6 requests are built. V2-V5 show the published EOS/EOL dates and V6 replacement path in each request description.`,
+        item: hostAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, hostAssets.operations)))
       }]
     }
   ],

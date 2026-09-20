@@ -10,10 +10,10 @@
     "reviewed": "2026-09-20"
   },
   "versionHistory": [
-    {"version": "2.0", "path": "/api/2.0/fo/asset/host/", "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "retained in catalog; parameter-difference extraction pending"},
-    {"version": "3.0", "path": "/api/3.0/fo/asset/host/", "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "retained in catalog; parameter-difference extraction pending"},
-    {"version": "4.0", "path": "/api/4.0/fo/asset/host/", "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "retained in catalog; parameter-difference extraction pending"},
-    {"version": "5.0", "path": "/api/5.0/fo/asset/host/", "lifecycle": {"status": "Scheduled EOS", "eos": "February 2027", "eol": "August 2027", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "retained in catalog; parameter-difference extraction pending"},
+    {"version": "2.0", "path": "/api/2.0/fo/asset/host/", "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "built; import pending"},
+    {"version": "3.0", "path": "/api/3.0/fo/asset/host/", "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "built; import pending"},
+    {"version": "4.0", "path": "/api/4.0/fo/asset/host/", "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "built; import pending"},
+    {"version": "5.0", "path": "/api/5.0/fo/asset/host/", "lifecycle": {"status": "Scheduled EOS", "eos": "February 2027", "eol": "August 2027", "replacementPath": "/api/6.0/fo/asset/host/"}, "coverage": "built; import pending"},
     {"version": "6.0", "path": "/api/6.0/fo/asset/host/", "lifecycle": {"status": "Active", "eos": null, "eol": null, "replacementPath": null}, "coverage": "built; import pending"}
   ],
   "operations": [
@@ -72,9 +72,61 @@
         {"name": "trurisk_max", "value": "", "required": false},
         {"name": "show_trurisk_factors", "value": "", "required": false, "values": ["0", "1"]},
         {"name": "host_metadata", "value": "", "required": false, "values": ["all", "ec2", "google", "azure", "oci"]},
-        {"name": "host_metadata_fields", "value": "", "required": "when host_metadata is specified"}
+        {"name": "host_metadata_fields", "value": "", "required": "when host_metadata is specified"},
+        {"name": "show_cloud_tags", "value": "", "required": false, "values": ["0", "1"]},
+        {"name": "cloud_tag_fields", "value": "", "required": "when show_cloud_tags is specified"}
       ],
       "coverage": "all V6 documented input parameters reviewed; GET and POST requests built; import pending"
+    },
+    {
+      "id": "host-list-v2",
+      "name": "List hosts - V2",
+      "methods": ["GET", "POST"],
+      "path": "/api/2.0/fo/asset/host/",
+      "version": "2.0",
+      "parametersFrom": "host-list-v6",
+      "parameterExclusions": ["pc_auth_success_date_before", "pc_auth_success_date_after", "cloud_agent_activationkey"],
+      "parameterOverrides": {"host_metadata": {"values": ["all", "ec2", "google", "azure"]}},
+      "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"},
+      "sourcePages": "995-1008",
+      "coverage": "all documented input parameters reviewed; GET and POST requests built; import pending"
+    },
+    {
+      "id": "host-list-v3",
+      "name": "List hosts - V3",
+      "methods": ["GET", "POST"],
+      "path": "/api/3.0/fo/asset/host/",
+      "version": "3.0",
+      "parametersFrom": "host-list-v6",
+      "parameterExclusions": ["cloud_agent_activationkey"],
+      "parameterOverrides": {"host_metadata": {"values": ["all", "ec2", "google", "azure"]}},
+      "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"},
+      "sourcePages": "1009-1029",
+      "coverage": "all documented input parameters reviewed; GET and POST requests built; import pending"
+    },
+    {
+      "id": "host-list-v4",
+      "name": "List hosts - V4",
+      "methods": ["GET", "POST"],
+      "path": "/api/4.0/fo/asset/host/",
+      "version": "4.0",
+      "parametersFrom": "host-list-v6",
+      "parameterOverrides": {"host_metadata": {"values": ["all", "ec2", "google", "azure"]}},
+      "lifecycle": {"status": "EOS", "eos": "December 2025", "eol": "December 2026", "replacementPath": "/api/6.0/fo/asset/host/"},
+      "sourcePages": "1030-1055",
+      "coverage": "all documented input parameters reviewed; GET and POST requests built; import pending"
+    },
+    {
+      "id": "host-list-v5",
+      "name": "List hosts - V5",
+      "methods": ["GET", "POST"],
+      "path": "/api/5.0/fo/asset/host/",
+      "version": "5.0",
+      "parametersFrom": "host-list-v6",
+      "parameterOverrides": {"host_metadata": {"values": ["all", "ec2", "google", "azure"]}},
+      "lifecycle": {"status": "Scheduled EOS", "eos": "February 2027", "eol": "August 2027", "replacementPath": "/api/6.0/fo/asset/host/"},
+      "sourcePages": "1056-1082",
+      "coverage": "all documented input parameters reviewed; GET and POST requests built; import pending"
     }
   ]
 }
