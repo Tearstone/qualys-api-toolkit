@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "f8df5c1a-1db4-4c1e-9592-2c685ca00d52",
     "name": "Qualys API (VM/PC)",
-    "description": "Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, and Host List V2-V6. Legacy Host List versions display their published EOS/EOL dates and V6 replacement path. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection's authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.",
+    "description": "Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, Host List V2-V6, and Host Update V2. Legacy Host List versions display their published EOS/EOL dates and V6 replacement path. Host Update V2 displays its lifecycle warning without implying an undocumented V6 update action. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection's authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "auth": {
@@ -4317,6 +4317,172 @@
                 },
                 "description": "List hosts - V5. Lifecycle: Scheduled EOS (EOS February 2027; EOL August 2027) as of 2026-09-20. Recommended path: /api/6.0/fo/asset/host/."
               },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Host update",
+          "description": "Host Update source: Qualys API (VM and PA) User Guide v10.40, pages 1115-1118. The released PDF documents POST only. The current HTML heading says GET/POST, but its parameter table and every sample use POST; the collection therefore exposes POST only pending a clear published GET example.",
+          "item": [
+            {
+              "name": "[CHANGE] Update hosts - V2",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "action",
+                      "value": "update",
+                      "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "echo_request",
+                      "value": "",
+                      "description": "Optional. Documented values: 0, 1.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ids",
+                      "value": "",
+                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ips",
+                      "value": "",
+                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles. Alternative: POSTed CSV raw data.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "network_id",
+                      "value": "",
+                      "description": "Required: valid only when Network Support is enabled.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "network_name",
+                      "value": "",
+                      "description": "Required: valid only when Network Support is enabled.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "tracking_method",
+                      "value": "",
+                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "host_dns",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "host_netbios",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ag_ids",
+                      "value": "",
+                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ag_titles",
+                      "value": "",
+                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "new_tracking_method",
+                      "value": "",
+                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "new_owner",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "new_ud1",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "new_ud2",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "new_ud3",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "new_comment",
+                      "value": "",
+                      "description": "Optional.",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/2.0/fo/asset/host/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "2.0",
+                    "fo",
+                    "asset",
+                    "host",
+                    ""
+                  ]
+                },
+                "description": "Update hosts - V2. Lifecycle: EOS (EOS December 2025; EOL December 2026) as of 2026-09-20. The published lifecycle table covers the versioned Asset Host path, but no V6 Host Update action is currently documented. Do not assume a V6 update replacement exists. This request can change tenant data."
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
+                      "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
+                      "}"
+                    ]
+                  }
+                }
+              ],
               "response": []
             }
           ]

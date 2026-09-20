@@ -5,10 +5,10 @@ import { fileURLToPath } from 'node:url';
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const catalogDirectory = resolve(repositoryRoot, 'catalog/vm-pc');
 const outputPath = resolve(repositoryRoot, 'collections/qualys-api-vm-pc/qualys-api-vm-pc.postman_collection.json');
-const catalogPaths = ['authentication.json', 'assets-ip.json', 'assets-host-list.json'];
+const catalogPaths = ['authentication.json', 'assets-ip.json', 'assets-host-list.json', 'assets-host-update.json'];
 
 const source = await Promise.all(catalogPaths.map(async (file) => JSON.parse(await readFile(resolve(catalogDirectory, file), 'utf8'))));
-const [authentication, ipAssets, hostAssets] = source;
+const [authentication, ipAssets, hostAssets, hostUpdate] = source;
 
 function fail(message) {
   throw new Error(`Catalog validation failed: ${message}`);
@@ -30,7 +30,8 @@ function lifecycleText(operation) {
   const lifecycle = operation.lifecycle;
   const dates = [lifecycle.eos && `EOS ${lifecycle.eos}`, lifecycle.eol && `EOL ${lifecycle.eol}`].filter(Boolean);
   const replacement = lifecycle.replacementPath ? ` Recommended path: ${lifecycle.replacementPath}.` : '';
-  return `Lifecycle: ${lifecycle.status}${dates.length ? ` (${dates.join('; ')})` : ''} as of ${authentication.source.reviewed}.${replacement}`;
+  const note = lifecycle.note ? ` ${lifecycle.note}` : '';
+  return `Lifecycle: ${lifecycle.status}${dates.length ? ` (${dates.join('; ')})` : ''} as of ${authentication.source.reviewed}.${replacement}${note}`;
 }
 
 function parameterDescription(parameter, operation) {
@@ -129,7 +130,7 @@ const collection = {
   info: {
     _postman_id: 'f8df5c1a-1db4-4c1e-9592-2c685ca00d52',
     name: 'Qualys API (VM/PC)',
-    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, and Host List V2-V6. Legacy Host List versions display their published EOS/EOL dates and V6 replacement path. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
+    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, Host List V2-V6, and Host Update V2. Legacy Host List versions display their published EOS/EOL dates and V6 replacement path. Host Update V2 displays its lifecycle warning without implying an undocumented V6 update action. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
     schema: 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
   },
   auth: { type: 'basic', basic: [{ key: 'username', value: '{{username}}', type: 'string' }, { key: 'password', value: '{{password}}', type: 'string' }] },
@@ -153,6 +154,10 @@ const collection = {
         name: 'Hosts',
         description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. V2-V6 requests are built. V2-V5 show the published EOS/EOL dates and V6 replacement path in each request description.`,
         item: hostAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, hostAssets.operations)))
+      }, {
+        name: 'Host update',
+        description: `Host Update source: ${hostUpdate.guide} v${hostUpdate.guideVersion}, pages ${hostUpdate.source.pdfPages}. ${hostUpdate.source.methodNote}`,
+        item: hostUpdate.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, hostUpdate.operations)))
       }]
     }
   ],

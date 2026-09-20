@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "guide": "Qualys API (VM and PA) User Guide",
+  "guideVersion": "10.40",
+  "guideDate": "2026-09-07",
+  "source": {
+    "pdfPages": "1115-1118",
+    "html": "https://docs.qualys.com/en/vm/qweb-all-api/mergedProjects/qapi-assets/host_update/host_update.htm",
+    "lifecycle": "https://docs.qualys.com/en/vm/qweb-all-api/get_started/api_versioning_standards.htm",
+    "reviewed": "2026-09-20",
+    "methodNote": "The released PDF documents POST only. The current HTML heading says GET/POST, but its parameter table and every sample use POST; the collection therefore exposes POST only pending a clear published GET example."
+  },
+  "operations": [
+    {
+      "id": "host-update-v2",
+      "name": "Update hosts - V2",
+      "methods": ["POST"],
+      "path": "/api/2.0/fo/asset/host/",
+      "version": "2.0",
+      "tenantChange": true,
+      "lifecycle": {
+        "status": "EOS",
+        "eos": "December 2025",
+        "eol": "December 2026",
+        "replacementPath": null,
+        "note": "The published lifecycle table covers the versioned Asset Host path, but no V6 Host Update action is currently documented. Do not assume a V6 update replacement exists."
+      },
+      "parameters": [
+        {"name": "action", "value": "update", "required": true},
+        {"name": "echo_request", "value": "", "required": false, "values": ["0", "1"]},
+        {"name": "ids", "value": "", "required": "one host selector is required: ids, ips, ag_ids, or ag_titles"},
+        {"name": "ips", "value": "", "required": "one host selector is required: ids, ips, ag_ids, or ag_titles", "alternative": "POSTed CSV raw data"},
+        {"name": "network_id", "value": "", "required": "valid only when Network Support is enabled"},
+        {"name": "network_name", "value": "", "required": "valid only when Network Support is enabled"},
+        {"name": "tracking_method", "value": "", "required": false, "values": ["IP", "DNS", "NETBIOS"]},
+        {"name": "host_dns", "value": "", "required": false},
+        {"name": "host_netbios", "value": "", "required": false},
+        {"name": "ag_ids", "value": "", "required": "one host selector is required: ids, ips, ag_ids, or ag_titles"},
+        {"name": "ag_titles", "value": "", "required": "one host selector is required: ids, ips, ag_ids, or ag_titles"},
+        {"name": "new_tracking_method", "value": "", "required": false, "values": ["IP", "DNS", "NETBIOS"]},
+        {"name": "new_owner", "value": "", "required": false},
+        {"name": "new_ud1", "value": "", "required": false},
+        {"name": "new_ud2", "value": "", "required": false},
+        {"name": "new_ud3", "value": "", "required": false},
+        {"name": "new_comment", "value": "", "required": false}
+      ],
+      "coverage": "all documented form parameters reviewed; POST request built; CSV raw-data variant pending"
+    }
+  ]
+}
