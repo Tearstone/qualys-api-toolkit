@@ -2,7 +2,7 @@
 
 ## Status
 
-In preparation. No Qualys API (VM/PC) Postman collection has been published yet.
+Early partial reference. It currently includes shared authentication and IP asset operations. It is not yet a complete Qualys API (VM/PC) reference.
 
 ## Intended coverage
 

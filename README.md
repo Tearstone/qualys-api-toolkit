@@ -10,7 +10,7 @@ This repository is intentionally focused on API reference collections. It does n
 
 ## Status
 
-The repository foundation is in place. The VMDR collection is being cataloged and has not yet been published. Until a collection is marked released, do not treat this repository as a complete API reference.
+The VM/PC collection is available as an early, partial reference. It currently includes shared authentication and IP asset operations; it is not yet a complete API reference. The coverage register shows what is currently represented and what remains.
 
 ## Planned layout
 
@@ -19,8 +19,10 @@ collections/
   qualys-api-vm-pc/     VMDR, Policy Audit, and shared-platform APIs
 environments/
   qualys.template...    Credential-free Postman environment template
+catalog/
+  vm-pc/                Structured source records used to maintain collections
 docs/
-  collection-standard   Rules used to build and review collections
+  sources and standards Maintainer guidance, not customer documentation
 ```
 
 Each product collection will identify its source documentation, covered endpoint versions, and verification status.
@@ -36,7 +38,7 @@ When the Qualys API (VM/PC) collection is released:
 
 ## Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and follow the [collection standard](docs/collection-standard.md). The priority is completeness and accuracy over speed.
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and follow the [collection standard](docs/collection-standard.md). The priority is completeness and accuracy over speed. The structured [catalog](catalog/) is the maintainer source of truth; the Postman collection is the customer-facing deliverable.
 
 ## Attribution and support
 

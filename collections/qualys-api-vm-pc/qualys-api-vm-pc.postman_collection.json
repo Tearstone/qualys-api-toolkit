@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "f8df5c1a-1db4-4c1e-9592-2c685ca00d52",
     "name": "Qualys API (VM/PC)",
-    "description": "Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication only. Additional VMDR and Policy Audit families are cataloged in the coverage register and will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection's authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.",
+    "description": "Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication and IP asset operations. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection's authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "auth": {

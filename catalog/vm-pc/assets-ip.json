@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0",
+  "guide": "Qualys API (VM and PA) User Guide",
+  "guideVersion": "10.40",
+  "guideDate": "2026-09-07",
+  "source": {
+    "pdfPages": "984-994",
+    "lifecycle": "https://docs.qualys.com/en/vm/qweb-all-api/get_started/api_versioning_standards.htm",
+    "reviewed": "2026-09-20"
+  },
+  "operations": [
+    {
+      "id": "ip-list-v2",
+      "name": "List IP addresses",
+      "methods": ["GET", "POST"],
+      "path": "/api/2.0/fo/asset/ip/",
+      "version": "2.0",
+      "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
+      "parameters": [
+        {"name": "action", "value": "list", "required": true},
+        {"name": "echo_request", "value": "1", "required": false},
+        {"name": "ips", "value": "", "required": false},
+        {"name": "network_id", "value": "", "required": false},
+        {"name": "tracking_method", "value": "", "required": false, "values": ["IP", "DNS", "NETBIOS"]},
+        {"name": "compliance_enabled", "value": "", "required": false, "values": ["0", "1"]},
+        {"name": "certview_enabled", "value": "", "required": false, "values": ["0", "1"]}
+      ],
+      "coverage": "built; import pending"
+    },
+    {
+      "id": "ip-add-v2",
+      "name": "Add IP addresses",
+      "methods": ["POST"],
+      "path": "/api/2.0/fo/asset/ip/",
+      "version": "2.0",
+      "tenantChange": true,
+      "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
+      "parameters": [
+        {"name": "action", "value": "add", "required": true},
+        {"name": "enable_vm", "value": "1", "required": true, "values": ["0", "1"]},
+        {"name": "enable_pc", "value": "0", "required": true, "values": ["0", "1"]},
+        {"name": "enable_sca", "value": "0", "required": true, "values": ["0", "1"]},
+        {"name": "ips", "value": "192.0.2.10", "required": true, "alternative": "POSTed CSV raw data"},
+        {"name": "echo_request", "value": "1", "required": false},
+        {"name": "tracking_method", "value": "", "required": false, "values": ["IP", "DNS", "NETBIOS"]},
+        {"name": "owner", "value": "", "required": false},
+        {"name": "ud1", "value": "", "required": false},
+        {"name": "ud2", "value": "", "required": false},
+        {"name": "ud3", "value": "", "required": false},
+        {"name": "comment", "value": "", "required": false},
+        {"name": "ag_title", "value": "", "required": "Unit Manager only"},
+        {"name": "enable_certview", "value": "", "required": false, "values": ["0", "1"]}
+      ],
+      "coverage": "form request built; CSV raw-data variant pending"
+    },
+    {
+      "id": "ip-update-v2",
+      "name": "Update IP addresses",
+      "methods": ["POST"],
+      "path": "/api/2.0/fo/asset/ip/",
+      "version": "2.0",
+      "tenantChange": true,
+      "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
+      "parameters": [
+        {"name": "action", "value": "update", "required": true},
+        {"name": "ips", "value": "192.0.2.10", "required": true, "alternative": "POSTed CSV raw data"},
+        {"name": "echo_request", "value": "1", "required": false},
+        {"name": "network_id", "value": "", "required": false},
+        {"name": "tracking_method", "value": "", "required": false, "values": ["IP", "DNS", "NETBIOS"]},
+        {"name": "host_dns", "value": "", "required": false},
+        {"name": "host_netbios", "value": "", "required": false},
+        {"name": "owner", "value": "", "required": false},
+        {"name": "ud1", "value": "", "required": false},
+        {"name": "ud2", "value": "", "required": false},
+        {"name": "ud3", "value": "", "required": false},
+        {"name": "comment", "value": "", "required": false}
+      ],
+      "coverage": "form request built; CSV raw-data variant pending"
+    }
+  ]
+}

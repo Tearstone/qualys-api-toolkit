@@ -27,6 +27,10 @@ Every published request must include:
 
 Place requests that can create, modify, or delete tenant data in a clearly labeled area and keep them disabled unless a safe default request is possible.
 
+## Catalog-first maintenance
+
+Add or update operation metadata in `catalog/` before editing the Postman collection. A catalog record captures the endpoint version, parameters, lifecycle details, source pages, and maintenance status in a form that can later generate and validate the customer-facing collection. Do not add new `inventory/` Markdown files for individual API families.
+
 ## Before opening a pull request
 
 1. Import the collection into Postman and confirm it loads without errors.

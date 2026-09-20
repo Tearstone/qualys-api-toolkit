@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "guide": "Qualys API (VM and PA) User Guide",
+  "guideVersion": "10.40",
+  "guideDate": "2026-09-07",
+  "source": {
+    "pdfPages": "25-35",
+    "html": "https://docs.qualys.com/en/vm/qweb-all-api/get_started/authentication.htm",
+    "lifecycle": "https://docs.qualys.com/en/vm/qweb-all-api/get_started/api_versioning_standards.htm",
+    "reviewed": "2026-09-20"
+  },
+  "authenticationModes": [
+    {"name": "Basic HTTP", "collectionDefault": true, "variables": ["username", "password"]},
+    {"name": "Session", "collectionDefault": false, "cookie": "QualysSession"},
+    {"name": "IdP JWT", "collectionDefault": false, "variable": "accessToken", "note": "Token-generation URL is IdP-specific and is not a Qualys API endpoint."}
+  ],
+  "operations": [
+    {
+      "id": "session-login-v2",
+      "name": "Session login",
+      "method": "POST",
+      "path": "/api/2.0/fo/session/",
+      "version": "2.0",
+      "authorization": "noauth",
+      "requiredHeaders": ["X-Requested-With"],
+      "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
+      "parameters": [
+        {"name": "action", "value": "login", "required": true, "location": "form"},
+        {"name": "username", "value": "{{username}}", "required": true, "location": "form"},
+        {"name": "password", "value": "{{password}}", "required": true, "location": "form"},
+        {"name": "echo_request", "value": "1", "required": false, "location": "form"}
+      ],
+      "coverage": "built; import pending"
+    },
+    {
+      "id": "session-logout-v2",
+      "name": "Session logout",
+      "method": "POST",
+      "path": "/api/2.0/fo/session/",
+      "version": "2.0",
+      "authorization": "noauth",
+      "requiredHeaders": ["X-Requested-With"],
+      "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
+      "parameters": [
+        {"name": "action", "value": "logout", "required": true, "location": "form"},
+        {"name": "echo_request", "value": "1", "required": false, "location": "form"}
+      ],
+      "coverage": "built; import pending"
+    }
+  ]
+}
