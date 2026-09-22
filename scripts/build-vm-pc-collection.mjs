@@ -73,7 +73,7 @@ function url(path, query) {
 }
 
 function standardHeaders(operation) {
-  return operation.requiredHeaders?.includes('X-Requested-With') || operation.id.startsWith('ip-')
+  return operation.requiredHeaders?.includes('X-Requested-With') || operation.id.startsWith('ip-') || operation.id.startsWith('host-')
     ? [{ key: 'X-Requested-With', value: '{{xRequestedWith}}', type: 'text' }]
     : [];
 }
@@ -93,7 +93,7 @@ function changeGate(operation) {
   }];
 }
 
-function request(operation, method, operations, { auth = false, sessionTest } = {}) {
+function request(operation, method, operations, { auth = false, sessionTest, displayName } = {}) {
   const query = method === 'GET' ? formParameters(operation, operations) : undefined;
   const body = method === 'POST' ? { mode: 'urlencoded', urlencoded: formParameters(operation, operations) } : undefined;
   const event = [
@@ -101,7 +101,7 @@ function request(operation, method, operations, { auth = false, sessionTest } = 
     ...changeGate(operation)
   ];
   return {
-    name: `${operation.tenantChange ? '[CHANGE] ' : ''}${operation.name}${operation.methods?.length > 1 ? ` (${method})` : ''}`,
+    name: displayName ?? `${operation.tenantChange ? '[CHANGE] ' : ''}${operation.name}${operation.methods?.length > 1 ? ` (${method})` : ''}`,
     request: {
       ...(auth ? { auth: { type: operation.authorization } } : {}),
       method,
@@ -125,6 +125,12 @@ const sessionTests = {
     "pm.test('Session logout response indicates success', function () {", "  pm.expect(pm.response.text()).to.include('Logged out');", '});'
   ]
 };
+
+function hostListRequest(operation, method) {
+  return request(operation, method, hostAssets.operations, {
+    displayName: operation.name,
+  });
+}
 
 const collection = {
   info: {
@@ -152,8 +158,16 @@ const collection = {
         item: ipAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, ipAssets.operations)))
       }, {
         name: 'Hosts',
-        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. V2-V6 requests are built. V2-V5 show the published EOS/EOL dates and V6 replacement path in each request description.`,
-        item: hostAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, hostAssets.operations)))
+        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. Start with the GET requests. Qualys also documents POST for each version; its equivalent form parameters appear under Postman's Body tab and are grouped separately to keep the primary navigation clear. V2-V5 show the published EOS/EOL dates and V6 replacement path in each request description.`,
+        item: [{
+          name: 'GET - primary requests',
+          description: 'Use these read-only requests by default. All documented input parameters are available in Postman Params.',
+          item: hostAssets.operations.map((operation) => hostListRequest(operation, 'GET'))
+        }, {
+          name: 'POST - alternative form requests',
+          description: 'Qualys documents POST as an alternative transport for the same Host List operation. The same input parameters are available under Postman Body as x-www-form-urlencoded fields, not Params. Use this only when an integration specifically requires POST.',
+          item: hostAssets.operations.map((operation) => hostListRequest(operation, 'POST'))
+        }]
       }, {
         name: 'Host update',
         description: `Host Update source: ${hostUpdate.guide} v${hostUpdate.guideVersion}, pages ${hostUpdate.source.pdfPages}. ${hostUpdate.source.methodNote}`,
