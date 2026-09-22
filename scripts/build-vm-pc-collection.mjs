@@ -133,6 +133,10 @@ function hostListRequest(operation, method) {
   });
 }
 
+function namedRequest(operation, method, operations) {
+  return request(operation, method, operations, { displayName: operation.name });
+}
+
 const collection = {
   info: {
     _postman_id: 'f8df5c1a-1db4-4c1e-9592-2c685ca00d52',
@@ -156,7 +160,20 @@ const collection = {
       description: `Source: ${ipAssets.guide} v${ipAssets.guideVersion}, pages ${ipAssets.source.pdfPages}. Lifecycle reviewed ${ipAssets.source.reviewed}.`,
       item: [{
         name: 'IP addresses',
-        item: ipAssets.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, ipAssets.operations)))
+        description: 'List requests are read-only. Tenant-changing add and update requests are grouped separately and require the explicit safety gate.',
+        item: [{
+          name: 'GET - primary request',
+          description: 'Use this read-only request by default. Documented input parameters are available in Postman Params.',
+          item: ipAssets.operations.filter((operation) => !operation.tenantChange).flatMap((operation) => operation.methods.filter((method) => method === 'GET').map((method) => namedRequest(operation, method, ipAssets.operations)))
+        }, {
+          name: 'POST - alternative form request',
+          description: 'Qualys documents POST as an alternative transport for the same IP List operation. Its parameters are available under Postman Body as x-www-form-urlencoded fields.',
+          item: ipAssets.operations.filter((operation) => !operation.tenantChange).flatMap((operation) => operation.methods.filter((method) => method === 'POST').map((method) => namedRequest(operation, method, ipAssets.operations)))
+        }, {
+          name: 'Changes - safety gated',
+          description: 'These requests add or modify tenant IP assets. Set allowTenantChanges=true, review values, and enable the action field before sending.',
+          item: ipAssets.operations.filter((operation) => operation.tenantChange).flatMap((operation) => operation.methods.map((method) => namedRequest(operation, method, ipAssets.operations)))
+        }]
       }, {
         name: 'Hosts',
         description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. Start with the GET requests. Qualys also documents POST for each version; its equivalent form parameters appear under Postman's Body tab and are grouped separately to keep the primary navigation clear. V2-V5 show the published EOS/EOL dates and V6 replacement path in each request description.`,
@@ -168,11 +185,11 @@ const collection = {
           name: 'POST - alternative form requests',
           description: 'Qualys documents POST as an alternative transport for the same Host List operation. The same input parameters are available under Postman Body as x-www-form-urlencoded fields, not Params. Use this only when an integration specifically requires POST.',
           item: hostAssets.operations.map((operation) => hostListRequest(operation, 'POST'))
+        }, {
+          name: 'Changes - Host attributes (safety gated)',
+          description: `Uses action=update, which changes host attributes rather than listing hosts. ${hostUpdate.source.methodNote} Set allowTenantChanges=true, review values, and enable the action field before sending.`,
+          item: hostUpdate.operations.flatMap((operation) => operation.methods.map((method) => namedRequest(operation, method, hostUpdate.operations)))
         }]
-      }, {
-        name: 'Host update',
-        description: `Host Update source: ${hostUpdate.guide} v${hostUpdate.guideVersion}, pages ${hostUpdate.source.pdfPages}. ${hostUpdate.source.methodNote}`,
-        item: hostUpdate.operations.flatMap((operation) => operation.methods.map((method) => request(operation, method, hostUpdate.operations)))
       }]
     }
   ],

@@ -181,438 +181,457 @@
       "item": [
         {
           "name": "IP addresses",
+          "description": "List requests are read-only. Tenant-changing add and update requests are grouped separately and require the explicit safety gate.",
           "item": [
             {
-              "name": "List IP addresses - V2 (GET)",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "X-Requested-With",
-                    "value": "{{xRequestedWith}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/?action=list&echo_request=1&ips=&network_id=&tracking_method=&compliance_enabled=&certview_enabled=",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "2.0",
-                    "fo",
-                    "asset",
-                    "ip",
-                    ""
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "list",
-                      "description": "Required.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "echo_request",
-                      "value": "1",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ips",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "network_id",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "tracking_method",
-                      "value": "",
-                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "compliance_enabled",
-                      "value": "",
-                      "description": "Optional. Documented values: 0, 1.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "certview_enabled",
-                      "value": "",
-                      "description": "Optional. Documented values: 0, 1.",
-                      "type": "text",
-                      "disabled": true
-                    }
-                  ]
-                },
-                "description": "List IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
-              },
-              "response": []
-            },
-            {
-              "name": "List IP addresses - V2 (POST)",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "X-Requested-With",
-                    "value": "{{xRequestedWith}}",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "key": "action",
-                      "value": "list",
-                      "description": "Required.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "echo_request",
-                      "value": "1",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ips",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "network_id",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "tracking_method",
-                      "value": "",
-                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "compliance_enabled",
-                      "value": "",
-                      "description": "Optional. Documented values: 0, 1.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "certview_enabled",
-                      "value": "",
-                      "description": "Optional. Documented values: 0, 1.",
-                      "type": "text",
-                      "disabled": true
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "2.0",
-                    "fo",
-                    "asset",
-                    "ip",
-                    ""
-                  ]
-                },
-                "description": "List IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
-              },
-              "response": []
-            },
-            {
-              "name": "[CHANGE] Add IP addresses - V2",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "X-Requested-With",
-                    "value": "{{xRequestedWith}}",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "key": "action",
-                      "value": "add",
-                      "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "enable_vm",
-                      "value": "1",
-                      "description": "Required. Documented values: 0, 1.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "enable_pc",
-                      "value": "0",
-                      "description": "Required. Documented values: 0, 1.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "enable_sca",
-                      "value": "0",
-                      "description": "Required. Documented values: 0, 1.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "ips",
-                      "value": "192.0.2.10",
-                      "description": "Required. Alternative: POSTed CSV raw data.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "echo_request",
-                      "value": "1",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "tracking_method",
-                      "value": "",
-                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "owner",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ud1",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ud2",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ud3",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "comment",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ag_title",
-                      "value": "",
-                      "description": "Required: Unit Manager only.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "enable_certview",
-                      "value": "",
-                      "description": "Optional. Documented values: 0, 1.",
-                      "type": "text",
-                      "disabled": true
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "2.0",
-                    "fo",
-                    "asset",
-                    "ip",
-                    ""
-                  ]
-                },
-                "description": "Add IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
-              },
-              "event": [
+              "name": "GET - primary request",
+              "description": "Use this read-only request by default. Documented input parameters are available in Postman Params.",
+              "item": [
                 {
-                  "listen": "prerequest",
-                  "script": {
-                    "type": "text/javascript",
-                    "exec": [
-                      "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
-                      "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
-                      "}"
-                    ]
-                  }
+                  "name": "List IP addresses - V2",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Requested-With",
+                        "value": "{{xRequestedWith}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/?action=list&echo_request=1&ips=&network_id=&tracking_method=&compliance_enabled=&certview_enabled=",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "2.0",
+                        "fo",
+                        "asset",
+                        "ip",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "action",
+                          "value": "list",
+                          "description": "Required.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "echo_request",
+                          "value": "1",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ips",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "network_id",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "tracking_method",
+                          "value": "",
+                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "compliance_enabled",
+                          "value": "",
+                          "description": "Optional. Documented values: 0, 1.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "certview_enabled",
+                          "value": "",
+                          "description": "Optional. Documented values: 0, 1.",
+                          "type": "text",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "description": "List IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
+                  },
+                  "response": []
                 }
-              ],
-              "response": []
+              ]
             },
             {
-              "name": "[CHANGE] Update IP addresses - V2",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "X-Requested-With",
-                    "value": "{{xRequestedWith}}",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "key": "action",
-                      "value": "update",
-                      "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ips",
-                      "value": "192.0.2.10",
-                      "description": "Required. Alternative: POSTed CSV raw data.",
-                      "type": "text"
-                    },
-                    {
-                      "key": "echo_request",
-                      "value": "1",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "network_id",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "tracking_method",
-                      "value": "",
-                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "host_dns",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "host_netbios",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "owner",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ud1",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ud2",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ud3",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "comment",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "2.0",
-                    "fo",
-                    "asset",
-                    "ip",
-                    ""
-                  ]
-                },
-                "description": "Update IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
-              },
-              "event": [
+              "name": "POST - alternative form request",
+              "description": "Qualys documents POST as an alternative transport for the same IP List operation. Its parameters are available under Postman Body as x-www-form-urlencoded fields.",
+              "item": [
                 {
-                  "listen": "prerequest",
-                  "script": {
-                    "type": "text/javascript",
-                    "exec": [
-                      "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
-                      "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
-                      "}"
-                    ]
-                  }
+                  "name": "List IP addresses - V2",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Requested-With",
+                        "value": "{{xRequestedWith}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "action",
+                          "value": "list",
+                          "description": "Required.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "echo_request",
+                          "value": "1",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ips",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "network_id",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "tracking_method",
+                          "value": "",
+                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "compliance_enabled",
+                          "value": "",
+                          "description": "Optional. Documented values: 0, 1.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "certview_enabled",
+                          "value": "",
+                          "description": "Optional. Documented values: 0, 1.",
+                          "type": "text",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "2.0",
+                        "fo",
+                        "asset",
+                        "ip",
+                        ""
+                      ]
+                    },
+                    "description": "List IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
+                  },
+                  "response": []
                 }
-              ],
-              "response": []
+              ]
+            },
+            {
+              "name": "Changes - safety gated",
+              "description": "These requests add or modify tenant IP assets. Set allowTenantChanges=true, review values, and enable the action field before sending.",
+              "item": [
+                {
+                  "name": "Add IP addresses - V2",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Requested-With",
+                        "value": "{{xRequestedWith}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "action",
+                          "value": "add",
+                          "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "enable_vm",
+                          "value": "1",
+                          "description": "Required. Documented values: 0, 1.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "enable_pc",
+                          "value": "0",
+                          "description": "Required. Documented values: 0, 1.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "enable_sca",
+                          "value": "0",
+                          "description": "Required. Documented values: 0, 1.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "ips",
+                          "value": "192.0.2.10",
+                          "description": "Required. Alternative: POSTed CSV raw data.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "echo_request",
+                          "value": "1",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "tracking_method",
+                          "value": "",
+                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "owner",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ud1",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ud2",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ud3",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "comment",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ag_title",
+                          "value": "",
+                          "description": "Required: Unit Manager only.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "enable_certview",
+                          "value": "",
+                          "description": "Optional. Documented values: 0, 1.",
+                          "type": "text",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "2.0",
+                        "fo",
+                        "asset",
+                        "ip",
+                        ""
+                      ]
+                    },
+                    "description": "Add IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
+                  },
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
+                          "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
+                          "}"
+                        ]
+                      }
+                    }
+                  ],
+                  "response": []
+                },
+                {
+                  "name": "Update IP addresses - V2",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Requested-With",
+                        "value": "{{xRequestedWith}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "action",
+                          "value": "update",
+                          "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ips",
+                          "value": "192.0.2.10",
+                          "description": "Required. Alternative: POSTed CSV raw data.",
+                          "type": "text"
+                        },
+                        {
+                          "key": "echo_request",
+                          "value": "1",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "network_id",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "tracking_method",
+                          "value": "",
+                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "host_dns",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "host_netbios",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "owner",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ud1",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ud2",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ud3",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "comment",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/2.0/fo/asset/ip/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "2.0",
+                        "fo",
+                        "asset",
+                        "ip",
+                        ""
+                      ]
+                    },
+                    "description": "Update IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
+                  },
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
+                          "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
+                          "}"
+                        ]
+                      }
+                    }
+                  ],
+                  "response": []
+                }
+              ]
             }
           ]
         },
@@ -4390,178 +4409,178 @@
                   "response": []
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Host update",
-          "description": "Host Update source: Qualys API (VM and PA) User Guide v10.40, pages 1115-1118. The released PDF documents POST only. The current HTML heading says GET/POST, but its parameter table and every sample use POST; the collection therefore exposes POST only pending a clear published GET example.",
-          "item": [
+            },
             {
-              "name": "[CHANGE] Update hosts - V2",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "X-Requested-With",
-                    "value": "{{xRequestedWith}}",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "key": "action",
-                      "value": "update",
-                      "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "echo_request",
-                      "value": "",
-                      "description": "Optional. Documented values: 0, 1.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ids",
-                      "value": "",
-                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ips",
-                      "value": "",
-                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles. Alternative: POSTed CSV raw data.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "network_id",
-                      "value": "",
-                      "description": "Required: valid only when Network Support is enabled.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "network_name",
-                      "value": "",
-                      "description": "Required: valid only when Network Support is enabled.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "tracking_method",
-                      "value": "",
-                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "host_dns",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "host_netbios",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ag_ids",
-                      "value": "",
-                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ag_titles",
-                      "value": "",
-                      "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "new_tracking_method",
-                      "value": "",
-                      "description": "Optional. Documented values: IP, DNS, NETBIOS.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "new_owner",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "new_ud1",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "new_ud2",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "new_ud3",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "new_comment",
-                      "value": "",
-                      "description": "Optional.",
-                      "type": "text",
-                      "disabled": true
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/2.0/fo/asset/host/",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "2.0",
-                    "fo",
-                    "asset",
-                    "host",
-                    ""
-                  ]
-                },
-                "description": "Update hosts - V2. Lifecycle: EOS (EOS December 2025; EOL December 2026) as of 2026-09-20. The published lifecycle table covers the versioned Asset Host path, but no V6 Host Update action is currently documented. Do not assume a V6 update replacement exists. This request can change tenant data."
-              },
-              "event": [
+              "name": "Changes - Host attributes (safety gated)",
+              "description": "Uses action=update, which changes host attributes rather than listing hosts. The released PDF documents POST only. The current HTML heading says GET/POST, but its parameter table and every sample use POST; the collection therefore exposes POST only pending a clear published GET example. Set allowTenantChanges=true, review values, and enable the action field before sending.",
+              "item": [
                 {
-                  "listen": "prerequest",
-                  "script": {
-                    "type": "text/javascript",
-                    "exec": [
-                      "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
-                      "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
-                      "}"
-                    ]
-                  }
+                  "name": "Update hosts - V2",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Requested-With",
+                        "value": "{{xRequestedWith}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "action",
+                          "value": "update",
+                          "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "echo_request",
+                          "value": "",
+                          "description": "Optional. Documented values: 0, 1.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ids",
+                          "value": "",
+                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ips",
+                          "value": "",
+                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles. Alternative: POSTed CSV raw data.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "network_id",
+                          "value": "",
+                          "description": "Required: valid only when Network Support is enabled.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "network_name",
+                          "value": "",
+                          "description": "Required: valid only when Network Support is enabled.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "tracking_method",
+                          "value": "",
+                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "host_dns",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "host_netbios",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ag_ids",
+                          "value": "",
+                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "ag_titles",
+                          "value": "",
+                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "new_tracking_method",
+                          "value": "",
+                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "new_owner",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "new_ud1",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "new_ud2",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "new_ud3",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        },
+                        {
+                          "key": "new_comment",
+                          "value": "",
+                          "description": "Optional.",
+                          "type": "text",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/2.0/fo/asset/host/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "2.0",
+                        "fo",
+                        "asset",
+                        "host",
+                        ""
+                      ]
+                    },
+                    "description": "Update hosts - V2. Lifecycle: EOS (EOS December 2025; EOL December 2026) as of 2026-09-20. The published lifecycle table covers the versioned Asset Host path, but no V6 Host Update action is currently documented. Do not assume a V6 update replacement exists. This request can change tenant data."
+                  },
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "if (pm.variables.replaceIn('{{allowTenantChanges}}').toLowerCase() !== 'true') {",
+                          "  throw new Error('Safety gate: set allowTenantChanges=true, review the request, then enable action before sending.');",
+                          "}"
+                        ]
+                      }
+                    }
+                  ],
+                  "response": []
                 }
-              ],
-              "response": []
+              ]
             }
           ]
         }
