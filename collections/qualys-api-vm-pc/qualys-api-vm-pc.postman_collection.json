@@ -30,7 +30,7 @@
           "description": "Source: Qualys API (VM and PA) User Guide v10.40, pages 25-35. Lifecycle reviewed against the official EOS/EOL timeline on 2026-09-20.",
           "item": [
             {
-              "name": "Session login",
+              "name": "Session login - V2",
               "request": {
                 "auth": {
                   "type": "noauth"
@@ -86,7 +86,7 @@
                     ""
                   ]
                 },
-                "description": "Session login. Lifecycle: No published lifecycle date as of 2026-09-20."
+                "description": "Session login - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
               },
               "event": [
                 {
@@ -107,7 +107,7 @@
               "response": []
             },
             {
-              "name": "Session logout",
+              "name": "Session logout - V2",
               "request": {
                 "auth": {
                   "type": "noauth"
@@ -151,7 +151,7 @@
                     ""
                   ]
                 },
-                "description": "Session logout. Lifecycle: No published lifecycle date as of 2026-09-20."
+                "description": "Session logout - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
               },
               "event": [
                 {
@@ -183,7 +183,7 @@
           "name": "IP addresses",
           "item": [
             {
-              "name": "List IP addresses (GET)",
+              "name": "List IP addresses - V2 (GET)",
               "request": {
                 "method": "GET",
                 "header": [
@@ -257,12 +257,12 @@
                     }
                   ]
                 },
-                "description": "List IP addresses. Lifecycle: No published lifecycle date as of 2026-09-20."
+                "description": "List IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
               },
               "response": []
             },
             {
-              "name": "List IP addresses (POST)",
+              "name": "List IP addresses - V2 (POST)",
               "request": {
                 "method": "POST",
                 "header": [
@@ -339,12 +339,12 @@
                     ""
                   ]
                 },
-                "description": "List IP addresses. Lifecycle: No published lifecycle date as of 2026-09-20."
+                "description": "List IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20."
               },
               "response": []
             },
             {
-              "name": "[CHANGE] Add IP addresses",
+              "name": "[CHANGE] Add IP addresses - V2",
               "request": {
                 "method": "POST",
                 "header": [
@@ -467,7 +467,7 @@
                     ""
                   ]
                 },
-                "description": "Add IP addresses. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
+                "description": "Add IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
               },
               "event": [
                 {
@@ -485,7 +485,7 @@
               "response": []
             },
             {
-              "name": "[CHANGE] Update IP addresses",
+              "name": "[CHANGE] Update IP addresses - V2",
               "request": {
                 "method": "POST",
                 "header": [
@@ -597,7 +597,7 @@
                     ""
                   ]
                 },
-                "description": "Update IP addresses. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
+                "description": "Update IP addresses - V2. Lifecycle: No published lifecycle date as of 2026-09-20. This request can change tenant data."
               },
               "event": [
                 {
@@ -625,7 +625,7 @@
               "description": "Use these read-only requests by default. All documented input parameters are available in Postman Params.",
               "item": [
                 {
-                  "name": "List hosts",
+                  "name": "List hosts - V6",
                   "request": {
                     "method": "GET",
                     "header": [
@@ -1000,7 +1000,7 @@
                         }
                       ]
                     },
-                    "description": "List hosts. Lifecycle: Active as of 2026-09-20."
+                    "description": "List hosts - V6. Lifecycle: Active as of 2026-09-20."
                   },
                   "response": []
                 },
@@ -2503,7 +2503,7 @@
               "description": "Qualys documents POST as an alternative transport for the same Host List operation. The same input parameters are available under Postman Body as x-www-form-urlencoded fields, not Params. Use this only when an integration specifically requires POST.",
               "item": [
                 {
-                  "name": "List hosts",
+                  "name": "List hosts - V6",
                   "request": {
                     "method": "POST",
                     "header": [
@@ -2881,7 +2881,7 @@
                         ""
                       ]
                     },
-                    "description": "List hosts. Lifecycle: Active as of 2026-09-20."
+                    "description": "List hosts - V6. Lifecycle: Active as of 2026-09-20."
                   },
                   "response": []
                 },

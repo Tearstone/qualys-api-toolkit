@@ -11,7 +11,7 @@
   "operations": [
     {
       "id": "ip-list-v2",
-      "name": "List IP addresses",
+      "name": "List IP addresses - V2",
       "methods": ["GET", "POST"],
       "path": "/api/2.0/fo/asset/ip/",
       "version": "2.0",
@@ -29,7 +29,7 @@
     },
     {
       "id": "ip-add-v2",
-      "name": "Add IP addresses",
+      "name": "Add IP addresses - V2",
       "methods": ["POST"],
       "path": "/api/2.0/fo/asset/ip/",
       "version": "2.0",
@@ -55,7 +55,7 @@
     },
     {
       "id": "ip-update-v2",
-      "name": "Update IP addresses",
+      "name": "Update IP addresses - V2",
       "methods": ["POST"],
       "path": "/api/2.0/fo/asset/ip/",
       "version": "2.0",

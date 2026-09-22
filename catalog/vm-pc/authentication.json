@@ -17,7 +17,7 @@
   "operations": [
     {
       "id": "session-login-v2",
-      "name": "Session login",
+      "name": "Session login - V2",
       "method": "POST",
       "path": "/api/2.0/fo/session/",
       "version": "2.0",
@@ -34,7 +34,7 @@
     },
     {
       "id": "session-logout-v2",
-      "name": "Session logout",
+      "name": "Session logout - V2",
       "method": "POST",
       "path": "/api/2.0/fo/session/",
       "version": "2.0",

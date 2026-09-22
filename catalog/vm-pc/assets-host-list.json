@@ -19,7 +19,7 @@
   "operations": [
     {
       "id": "host-list-v6",
-      "name": "List hosts",
+      "name": "List hosts - V6",
       "methods": ["GET", "POST"],
       "path": "/api/6.0/fo/asset/host/",
       "version": "6.0",
