@@ -141,7 +141,7 @@ const collection = {
   info: {
     _postman_id: 'f8df5c1a-1db4-4c1e-9592-2c685ca00d52',
     name: 'Qualys API (VM/PC)',
-    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nCurrent coverage: shared authentication, IP asset operations, Host List V2-V6, and Host Update V2. Legacy Host List versions display their published EOS/EOL dates and V6 replacement path. Host Update V2 displays its lifecycle warning without implying an undocumented V6 update action. Additional VMDR and Policy Audit families will be added incrementally.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
+    description: 'Community-maintained reference collection for Qualys API (VM/PC).\n\nThis primary collection shows the latest documented endpoint version for each operation. Earlier Host List versions remain preserved in the structured catalog and will be published separately as a lifecycle-labeled archive. Host Update V2 is retained because Qualys has not documented a newer update action.\n\nAuthentication defaults to Basic HTTP authentication with {{username}} and {{password}}. For IdP JWT authentication, set {{accessToken}} in your local environment and change this collection\'s authentication type to Bearer Token.\n\nUse a Qualys API server URL without a trailing slash for {{baseUrl}}. Never commit credentials, access tokens, or tenant response data.',
     schema: 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
   },
   auth: { type: 'basic', basic: [{ key: 'username', value: '{{username}}', type: 'string' }, { key: 'password', value: '{{password}}', type: 'string' }] },
@@ -176,15 +176,15 @@ const collection = {
         }]
       }, {
         name: 'Hosts',
-        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. Start with the GET requests. Qualys also documents POST for each version; its equivalent form parameters appear under Postman's Body tab and are grouped separately to keep the primary navigation clear. V2-V5 show the published EOS/EOL dates and V6 replacement path in each request description.`,
+        description: `Host List source: ${hostAssets.guide} v${hostAssets.guideVersion}, pages ${hostAssets.source.pdfPages}. This primary collection includes active V6 only. Earlier versions remain in the catalog for the lifecycle-labeled archive.`,
         item: [{
           name: 'GET - primary requests',
           description: 'Use these read-only requests by default. All documented input parameters are available in Postman Params.',
-          item: hostAssets.operations.map((operation) => hostListRequest(operation, 'GET'))
+          item: hostAssets.operations.filter((operation) => operation.version === '6.0').map((operation) => hostListRequest(operation, 'GET'))
         }, {
           name: 'POST - alternative form requests',
           description: 'Qualys documents POST as an alternative transport for the same Host List operation. The same input parameters are available under Postman Body as x-www-form-urlencoded fields, not Params. Use this only when an integration specifically requires POST.',
-          item: hostAssets.operations.map((operation) => hostListRequest(operation, 'POST'))
+          item: hostAssets.operations.filter((operation) => operation.version === '6.0').map((operation) => hostListRequest(operation, 'POST'))
         }, {
           name: 'Changes - Host attributes (safety gated)',
           description: `Uses action=update, which changes host attributes rather than listing hosts. ${hostUpdate.source.methodNote} Set allowTenantChanges=true, review values, and enable the action field before sending.`,
