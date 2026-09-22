@@ -35,12 +35,13 @@ function lifecycleText(operation) {
 }
 
 function parameterDescription(parameter, operation) {
+  const purpose = parameter.description ? `${parameter.description} ` : '';
   const requirement = parameter.required === true ? 'Required.' : parameter.required ? `Required: ${parameter.required}.` : 'Optional.';
   const choices = parameter.values?.length ? ` Documented values: ${parameter.values.join(', ')}.` : '';
   const alternative = parameter.alternative ? ` Alternative: ${parameter.alternative}.` : '';
   const safety = operation.tenantChange && parameter.name === 'action'
     ? ' Disabled as a safety gate; enable only after setting allowTenantChanges=true.' : '';
-  return `${requirement}${choices}${alternative}${safety}`;
+  return `${purpose}${requirement}${choices}${alternative}${safety}`;
 }
 
 function resolvedParameters(operation, operations) {
