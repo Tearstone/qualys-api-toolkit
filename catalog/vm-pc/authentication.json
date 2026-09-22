@@ -25,10 +25,10 @@
       "requiredHeaders": ["X-Requested-With"],
       "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
       "parameters": [
-        {"name": "action", "value": "login", "required": true, "location": "form"},
-        {"name": "username", "value": "{{username}}", "required": true, "location": "form"},
-        {"name": "password", "value": "{{password}}", "required": true, "location": "form"},
-        {"name": "echo_request", "value": "1", "required": false, "location": "form"}
+        {"name": "action", "value": "login", "required": true, "location": "form", "description": "Creates a V2 API session."},
+        {"name": "username", "value": "{{username}}", "required": true, "location": "form", "description": "Qualys user login for the session."},
+        {"name": "password", "value": "{{password}}", "required": true, "location": "form", "description": "Qualys user password for the session."},
+        {"name": "echo_request", "value": "1", "required": false, "location": "form", "description": "Echoes submitted parameters in the XML response when set to 1."}
       ],
       "coverage": "built; import pending"
     },
@@ -42,8 +42,8 @@
       "requiredHeaders": ["X-Requested-With"],
       "lifecycle": {"status": "No published lifecycle date", "eos": null, "eol": null, "replacementPath": null},
       "parameters": [
-        {"name": "action", "value": "logout", "required": true, "location": "form"},
-        {"name": "echo_request", "value": "1", "required": false, "location": "form"}
+        {"name": "action", "value": "logout", "required": true, "location": "form", "description": "Closes the active V2 API session."},
+        {"name": "echo_request", "value": "1", "required": false, "location": "form", "description": "Echoes submitted parameters in the XML response when set to 1."}
       ],
       "coverage": "built; import pending"
     }

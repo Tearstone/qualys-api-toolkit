@@ -49,25 +49,25 @@
                     {
                       "key": "action",
                       "value": "login",
-                      "description": "Required.",
+                      "description": "Creates a V2 API session. Required.",
                       "type": "text"
                     },
                     {
                       "key": "username",
                       "value": "{{username}}",
-                      "description": "Required.",
+                      "description": "Qualys user login for the session. Required.",
                       "type": "text"
                     },
                     {
                       "key": "password",
                       "value": "{{password}}",
-                      "description": "Required.",
+                      "description": "Qualys user password for the session. Required.",
                       "type": "text"
                     },
                     {
                       "key": "echo_request",
                       "value": "1",
-                      "description": "Optional.",
+                      "description": "Echoes submitted parameters in the XML response when set to 1. Optional.",
                       "type": "text",
                       "disabled": true
                     }
@@ -126,13 +126,13 @@
                     {
                       "key": "action",
                       "value": "logout",
-                      "description": "Required.",
+                      "description": "Closes the active V2 API session. Required.",
                       "type": "text"
                     },
                     {
                       "key": "echo_request",
                       "value": "1",
-                      "description": "Optional.",
+                      "description": "Echoes submitted parameters in the XML response when set to 1. Optional.",
                       "type": "text",
                       "disabled": true
                     }
@@ -215,48 +215,48 @@
                         {
                           "key": "action",
                           "value": "list",
-                          "description": "Required.",
+                          "description": "Lists IP assets in the subscription. Required.",
                           "type": "text"
                         },
                         {
                           "key": "echo_request",
                           "value": "1",
-                          "description": "Optional.",
+                          "description": "Echoes submitted parameters in the XML response when set to 1. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ips",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Filters by comma-separated IPv4 addresses or ranges. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "network_id",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Filters by a custom network ID when Network Support is enabled. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "tracking_method",
                           "value": "",
-                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "description": "Filters assets by their tracking method. Optional. Documented values: IP, DNS, NETBIOS.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "compliance_enabled",
                           "value": "",
-                          "description": "Optional. Documented values: 0, 1.",
+                          "description": "Filters for IPs enabled (1) or not enabled (0) for Policy Compliance. Optional. Documented values: 0, 1.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "certview_enabled",
                           "value": "",
-                          "description": "Optional. Documented values: 0, 1.",
+                          "description": "Filters for IPs enabled (1) or not enabled (0) for Certificate View. Optional. Documented values: 0, 1.",
                           "type": "text",
                           "disabled": true
                         }
@@ -289,48 +289,48 @@
                         {
                           "key": "action",
                           "value": "list",
-                          "description": "Required.",
+                          "description": "Lists IP assets in the subscription. Required.",
                           "type": "text"
                         },
                         {
                           "key": "echo_request",
                           "value": "1",
-                          "description": "Optional.",
+                          "description": "Echoes submitted parameters in the XML response when set to 1. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ips",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Filters by comma-separated IPv4 addresses or ranges. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "network_id",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Filters by a custom network ID when Network Support is enabled. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "tracking_method",
                           "value": "",
-                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "description": "Filters assets by their tracking method. Optional. Documented values: IP, DNS, NETBIOS.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "compliance_enabled",
                           "value": "",
-                          "description": "Optional. Documented values: 0, 1.",
+                          "description": "Filters for IPs enabled (1) or not enabled (0) for Policy Compliance. Optional. Documented values: 0, 1.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "certview_enabled",
                           "value": "",
-                          "description": "Optional. Documented values: 0, 1.",
+                          "description": "Filters for IPs enabled (1) or not enabled (0) for Certificate View. Optional. Documented values: 0, 1.",
                           "type": "text",
                           "disabled": true
                         }
@@ -377,94 +377,94 @@
                         {
                           "key": "action",
                           "value": "add",
-                          "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                          "description": "Adds IP assets to the subscription. Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "enable_vm",
                           "value": "1",
-                          "description": "Required. Documented values: 0, 1.",
+                          "description": "Enables or disables Vulnerability Management for the new IPs. Required. Documented values: 0, 1.",
                           "type": "text"
                         },
                         {
                           "key": "enable_pc",
                           "value": "0",
-                          "description": "Required. Documented values: 0, 1.",
+                          "description": "Enables or disables Policy Compliance for the new IPs. Required. Documented values: 0, 1.",
                           "type": "text"
                         },
                         {
                           "key": "enable_sca",
                           "value": "0",
-                          "description": "Required. Documented values: 0, 1.",
+                          "description": "Enables or disables Security Configuration Assessment for the new IPs. Required. Documented values: 0, 1.",
                           "type": "text"
                         },
                         {
                           "key": "ips",
                           "value": "192.0.2.10",
-                          "description": "Required. Alternative: POSTed CSV raw data.",
+                          "description": "Provides IPv4 addresses, ranges, or CIDR values to add. Required. Alternative: POSTed CSV raw data.",
                           "type": "text"
                         },
                         {
                           "key": "echo_request",
                           "value": "1",
-                          "description": "Optional.",
+                          "description": "Echoes submitted parameters in the XML response when set to 1. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "tracking_method",
                           "value": "",
-                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "description": "Sets the initial tracking method for the added IPs. Optional. Documented values: IP, DNS, NETBIOS.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "owner",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Assigns an eligible Manager or permitted Unit Manager as owner. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ud1",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets user-defined field 1. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ud2",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets user-defined field 2. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ud3",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets user-defined field 3. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "comment",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets the user-defined comment. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ag_title",
                           "value": "",
-                          "description": "Required: Unit Manager only.",
+                          "description": "Identifies the Unit Manager asset group for the new IPs. Required: Unit Manager only.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "enable_certview",
                           "value": "",
-                          "description": "Optional. Documented values: 0, 1.",
+                          "description": "Enables or disables Certificate View for the new IPs. Optional. Documented values: 0, 1.",
                           "type": "text",
                           "disabled": true
                         }
@@ -518,83 +518,83 @@
                         {
                           "key": "action",
                           "value": "update",
-                          "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                          "description": "Updates existing IP assets in the subscription. Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ips",
                           "value": "192.0.2.10",
-                          "description": "Required. Alternative: POSTed CSV raw data.",
+                          "description": "Identifies IPv4 addresses, ranges, or CIDR values to update. Required. Alternative: POSTed CSV raw data.",
                           "type": "text"
                         },
                         {
                           "key": "echo_request",
                           "value": "1",
-                          "description": "Optional.",
+                          "description": "Echoes submitted parameters in the XML response when set to 1. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "network_id",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Restricts the update to a custom network ID when Network Support is enabled. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "tracking_method",
                           "value": "",
-                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "description": "Updates the tracking method; EC2 and Agent tracking cannot be changed. Optional. Documented values: IP, DNS, NETBIOS.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "host_dns",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates DNS hostname for a single matching IP. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "host_netbios",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates NetBIOS hostname for a single matching IP. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "owner",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates the asset owner. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ud1",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates user-defined field 1. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ud2",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates user-defined field 2. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ud3",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates user-defined field 3. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "comment",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Updates the user-defined comment. Optional.",
                           "type": "text",
                           "disabled": true
                         }
@@ -4431,119 +4431,119 @@
                         {
                           "key": "action",
                           "value": "update",
-                          "description": "Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
+                          "description": "Updates selected host attributes. Required. Disabled as a safety gate; enable only after setting allowTenantChanges=true.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "echo_request",
                           "value": "",
-                          "description": "Optional. Documented values: 0, 1.",
+                          "description": "Echoes submitted parameters in the XML response when set to 1. Optional. Documented values: 0, 1.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ids",
                           "value": "",
-                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                          "description": "Selects one or more host IDs; host-ID ranges are not accepted. Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ips",
                           "value": "",
-                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles. Alternative: POSTed CSV raw data.",
+                          "description": "Selects IPv4 addresses, ranges, or CIDR values to update. Required: one host selector is required: ids, ips, ag_ids, or ag_titles. Alternative: POSTed CSV raw data.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "network_id",
                           "value": "",
-                          "description": "Required: valid only when Network Support is enabled.",
+                          "description": "Restricts the request to a custom network ID; defaults to Global Default Network when omitted. Required: valid only when Network Support is enabled.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "network_name",
                           "value": "",
-                          "description": "Required: valid only when Network Support is enabled.",
+                          "description": "Restricts the request to a custom network name. Required: valid only when Network Support is enabled.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "tracking_method",
                           "value": "",
-                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "description": "Filters selected IP addresses by their current tracking method. Optional. Documented values: IP, DNS, NETBIOS.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "host_dns",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Requires a single IP and updates only when its DNS hostname matches this value. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "host_netbios",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Requires a single IP and updates only when its NetBIOS hostname matches this value. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ag_ids",
                           "value": "",
-                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                          "description": "Selects hosts in the specified asset-group IDs or ID ranges. Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "ag_titles",
                           "value": "",
-                          "description": "Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
+                          "description": "Selects hosts by strings in their asset-group titles. Required: one host selector is required: ids, ips, ag_ids, or ag_titles.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "new_tracking_method",
                           "value": "",
-                          "description": "Optional. Documented values: IP, DNS, NETBIOS.",
+                          "description": "Sets a new tracking method. EC2 and Agent tracking cannot be set or changed. Optional. Documented values: IP, DNS, NETBIOS.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "new_owner",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets a new eligible owner for the selected hosts. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "new_ud1",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets user-defined field 1, up to 128 ASCII characters. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "new_ud2",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets user-defined field 2, up to 128 ASCII characters. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "new_ud3",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets user-defined field 3, up to 128 ASCII characters. Optional.",
                           "type": "text",
                           "disabled": true
                         },
                         {
                           "key": "new_comment",
                           "value": "",
-                          "description": "Optional.",
+                          "description": "Sets the user-defined comment for the selected hosts. Optional.",
                           "type": "text",
                           "disabled": true
                         }
